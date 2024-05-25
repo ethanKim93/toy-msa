@@ -19,6 +19,7 @@ public class CustomFilter extends AbstractGatewayFilterFactory<CustomFilter.Conf
     public GatewayFilter apply(Config config) {
         // Custom Pre Filter
         return (exchange, chain) -> {
+            // netty라는 비동기 방식의 내장 서버 사용
             ServerHttpRequest request = exchange.getRequest();
             ServerHttpResponse response = exchange.getResponse();
 

@@ -39,7 +39,7 @@ public class GlobalFilter extends AbstractGatewayFilterFactory<GlobalFilter.Conf
 //            GatewayFilterChain chain);
 
     @Data
-    public static class Config {
+    public static class Config { // application.yml 파일에 정의되어 있음
         private String baseMessage;
         private boolean preLogger;
         private boolean postLogger;

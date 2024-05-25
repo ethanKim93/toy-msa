@@ -10,6 +10,7 @@ public class FilterConfig {
         this.env = env;
     }
 
+    //application.yml에 등록한 gateway 설정을, Java Code에서 처리 할 수 있음
 //    @Bean
 //    public RouteLocator gatewayRoutes(RouteLocatorBuilder builder, AuthorizationHeaderFilter myfilter) {
 //

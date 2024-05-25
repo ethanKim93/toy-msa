@@ -24,17 +24,17 @@ spring:
       simple:
         prefetch: 5
   cloud:
-    gateway:
-      default-filters:
+    gateway: # ZUL 과 큰 차이점은 , GateWay는 비동기 처리가 가능하다
+      default-filters: # 모든 필터의 시작과 끝에 호출됨
         - name: GlobalFilter
           args:
             baseMessage: Spring Cloud Gateway Global Filter
             preLogger: true
             postLogger: true
       routes:
-        - id: user-service
-          uri: lb://USER-SERVICE
-          predicates:
+        - id: user-service # 라우터의 고유한 이름
+          uri: lb://USER-SERVICE #포워딩 위치
+          predicates: # 조건
             - Path=/user-service/login
             - Method=POST
           filters:
@@ -86,8 +86,8 @@ spring:
           predicates:
             - Path=/first-service/**
           filters:
-#            - AddRequestHeader=first-request, first-request-header2
-#            - AddResponseHeader=first-response, first-response-header2
+#            - AddRequestHeader=first-request, first-request-header2 #요청 헤더 추가
+#            - AddResponseHeader=first-response, first-response-header2 # 응답 헤더 추가
             - CustomFilter
         - id: second-service
           uri: lb://MY-SECOND-SERVICE
@@ -97,7 +97,7 @@ spring:
 #            - AddRequestHeader=second-request, second-request-header2
 #            - AddResponseHeader=second-response, second-response-header2
             - name: CustomFilter
-#            - name: LoggingFilter
+#            - name: LoggingFilter // CustomFilter , LoggingFilter 2개를 같이 사용 할 수도 있음
 #              args:
 #                baseMessage: Hi, there.
 #                preLogger: true
